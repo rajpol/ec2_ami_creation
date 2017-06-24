@@ -1,0 +1,21 @@
+--- #EC2 AMI exmaple for creating a basic AMi template from an existing vm
+- hosts: localhost
+  connection: local
+  remote_user: test
+  become: yes
+  gather_facts: no
+  vars_files:
+  - files/awscred.yml
+  tasks:
+  - name: Basic provising of an AMi from our Instance
+    ec2_ami:
+     aws_access_key: "{{ aws_id }}"
+     aws_secret_key: "{{ aws_key }}"
+     region: "{{ aws_region }}"
+     instance_id: <Instance id>
+     wait: no
+     name: myfirstami
+     tags:
+      Name: Mynewami
+      Service: Testamiservice
+    register: instance
