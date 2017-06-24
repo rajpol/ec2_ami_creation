@@ -18,4 +18,9 @@
      tags:
       Name: Mynewami
       Service: Testamiservice
+     device_mapping:
+      - device_name: /dev/sdb1
+        size: 100
+        delete_on_termination: true
+        volume_type: gp2
     register: instance
